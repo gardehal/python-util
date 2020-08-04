@@ -45,8 +45,24 @@ class Util:
             return False
         else:
             return float(n).is_integer()
+            
+    def formatLine(array, labels, minLabelLength = 6, delim = " | "):
+        """
+        Returns a line of values based on the length of the corresponding label.
+        """
+
+        line = ""
+        valueIndex = 0
+        for a in array:
+            labelLen = len(str(labels[valueIndex])) if len(str(labels[valueIndex])) > minLabelLength else minLabelLength
+            spacePadding = " " * (labelLen - len(str(a)))
+            line += delim + str(a) + spacePadding
+            valueIndex += 1
+            
+        return line  
 
     colors = {
+        "GRAY": "\x1b[1;30;40m",
         "HEADER": "\x1b[95m",
         "OKBLUE": "\x1b[94m",
         "OKGREEN": "\x1b[92m",
